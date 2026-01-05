@@ -49,6 +49,10 @@ export class Vacancy {
   @CreateDateColumn()
   createdAt: Date;
 
+  @Column({ default: true })
+  isActive: boolean;
+
+
   @ManyToMany(() => Technology, (technology) => technology.vacancies)
   @JoinTable({
     name: "vacancy_technologies",

@@ -1,12 +1,12 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class InitSchema1767625988199 implements MigrationInterface {
-    name = 'InitSchema1767625988199'
+export class InitSchema1767632225887 implements MigrationInterface {
+    name = 'InitSchema1767632225887'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "technologies" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying(100) NOT NULL, CONSTRAINT "UQ_46800813f460eb131823371caee" UNIQUE ("name"), CONSTRAINT "PK_9a97465b79568f00becacdd4e4a" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TYPE "public"."vacancies_modality_enum" AS ENUM('ONSITE', 'REMOTE', 'HYBRID')`);
-        await queryRunner.query(`CREATE TABLE "vacancies" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "title" character varying(150) NOT NULL, "description" text NOT NULL, "seniority" character varying(50), "softSkills" text, "location" character varying(100), "modality" "public"."vacancies_modality_enum" NOT NULL, "salaryRange" character varying(100), "company" character varying(150), "maxApplicants" integer, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_3b45154a366568190cc15be2906" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "vacancies" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "title" character varying(150) NOT NULL, "description" text NOT NULL, "seniority" character varying(50), "softSkills" text, "location" character varying(100), "modality" "public"."vacancies_modality_enum" NOT NULL, "salaryRange" character varying(100), "company" character varying(150), "maxApplicants" integer, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "isActive" boolean NOT NULL DEFAULT true, CONSTRAINT "PK_3b45154a366568190cc15be2906" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "applications" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "appliedAt" TIMESTAMP NOT NULL DEFAULT now(), "userId" uuid, "vacancyId" uuid, CONSTRAINT "UQ_c53ada8f86847db0cb2c0e76703" UNIQUE ("userId", "vacancyId"), CONSTRAINT "PK_938c0a27255637bde919591888f" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "users" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying(100) NOT NULL, "email" character varying(150) NOT NULL, "password" text NOT NULL, "role" character varying(50) NOT NULL, CONSTRAINT "UQ_97672ac88f789774dd47f7c8be3" UNIQUE ("email"), CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "vacancy_technologies" ("vacancy_id" uuid NOT NULL, "technology_id" uuid NOT NULL, CONSTRAINT "PK_8c4e29669ec0c501f687e6070a1" PRIMARY KEY ("vacancy_id", "technology_id"))`);

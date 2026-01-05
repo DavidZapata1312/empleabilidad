@@ -7,8 +7,8 @@ import "dotenv/config";
 import { join } from "path";
 
 const migrationsGlob = [
-  join(__dirname, "..", "migrations", "*.ts"),
-  join(__dirname, "..", "migrations", "*.js"),
+  join(__dirname, "migrations", "*.ts"),
+  join(__dirname, "migrations", "*.js"),
 ];
 
 const AppDataSource = new DataSource({

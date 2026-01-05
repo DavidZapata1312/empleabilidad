@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Empleabilidad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1><a href="index.html" style="text-decoration:none; color: inherit;">Empleabilidad</a></h1>
+        <nav id="nav-auth"></nav>
+    </header>
+
+    <main id="dashboard-container">
+        <div class="container" style="max-width: 800px;">
+            <h2>Dashboard</h2>
+            <div style="margin-bottom: 2rem; padding: 1rem; background: #f0f9ff; border-radius: 4px;">
+                <p><strong>User:</strong> <span id="user-name"></span></p>
+                <p><strong>Role:</strong> <span id="user-role"></span></p>
+            </div>
+
+            <!-- Admin/Gestor Controls -->
+            <div id="admin-controls" class="hidden">
+                <h3>Create New Vacancy</h3>
+                <form id="create-vacancy-form" onsubmit="handleCreateVacancy(event)">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" id="v-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Company</label>
+                            <input type="text" id="v-company" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Salary Range</label>
+                            <input type="text" id="v-salary" placeholder="e.g. 1000-2000">
+                        </div>
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" id="v-location">
+                        </div>
+                        <div class="form-group">
+                            <label>Modality</label>
+                            <select id="v-modality">
+                                <option value="REMOTE">Remote</option>
+                                <option value="ONSITE">Onsite</option>
+                                <option value="HYBRID">Hybrid</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Seniority</label>
+                            <input type="text" id="v-seniority">
+                        </div>
+                        <div class="form-group">
+                            <label>Max Applicants</label>
+                            <input type="number" id="v-max" value="10">
+                        </div>
+                        <div class="form-group">
+                            <label>Technologies (Mocked)</label>
+                            <select id="vacancy-technologies" name="technologies" multiple>
+                                <!-- Populated by JS -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input id="v-description" required style="width:100%"></input>
+                    </div>
+                    <div class="form-group">
+                        <label>Soft Skills</label>
+                        <input type="text" id="v-softSkills">
+                    </div>
+
+                    <button type="submit">Create Vacancy</button>
+                </form>
+
+                <hr style="margin: 2rem 0; border: 0; border-top: 1px solid #eee;">
+
+                <h3>Manage Vacancies</h3>
+                <div id="admin-vacancy-list" class="vacancy-list"></div>
+            </div>
+
+            <!-- Coder Controls -->
+            <div id="coder-controls" class="hidden">
+                <p>Welcome! Check out the <a href="index.html">available vacancies</a> to apply.</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

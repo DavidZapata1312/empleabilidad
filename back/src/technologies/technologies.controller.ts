@@ -5,7 +5,7 @@ import { UpdateTechnologyDto } from './dto/update-technology.dto';
 
 @Controller('technologies')
 export class TechnologiesController {
-  constructor(private readonly technologiesService: TechnologiesService) {}
+  constructor(private readonly technologiesService: TechnologiesService) { }
 
   @Post()
   create(@Body() createTechnologyDto: CreateTechnologyDto) {
@@ -19,16 +19,16 @@ export class TechnologiesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.technologiesService.findOne(+id);
+    return this.technologiesService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTechnologyDto: UpdateTechnologyDto) {
-    return this.technologiesService.update(+id, updateTechnologyDto);
+    return this.technologiesService.update(id, updateTechnologyDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.technologiesService.remove(+id);
+    return this.technologiesService.remove(id);
   }
 }
